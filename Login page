@@ -1,0 +1,58 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class LoginPage extends JFrame implements ActionListener {
+    private JLabel usernameLabel;
+    private JTextField usernameField;
+    private JLabel passwordLabel;
+    private JPasswordField passwordField;
+    private JButton loginButton;
+
+    public LoginPage() {
+        // Set the title and layout of the frame
+        super("Login Page");
+        setLayout(new GridLayout(3, 2));
+
+        // Create the username label and field
+        usernameLabel = new JLabel("Username:");
+        add(usernameLabel);
+        usernameField = new JTextField(10);
+        add(usernameField);
+
+        // Create the password label and field
+        passwordLabel = new JLabel("Password:");
+        add(passwordLabel);
+        passwordField = new JPasswordField(10);
+        add(passwordField);
+
+        // Create the login button
+        loginButton = new JButton("Login");
+        loginButton.addActionListener(this);
+        add(loginButton);
+
+        // Set the size and location of the frame
+        setSize(300, 150);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == loginButton) {
+            // Get the entered username and password
+            String username = usernameField.getText();
+            String password = new String(passwordField.getPassword());
+
+            // Check if the username and password are correct
+            if (username.equals("admin") && password.equals("password")) {
+                // Login successful
+                JOptionPane.showMessageDialog(this, "Login successful!");
+            } else {
+                // Login failed
+                JOptionPane.showMessageDialog(this, "Invalid username or password.");
+            }
+        }
+    }
+
+    public static void main(String[] args)
